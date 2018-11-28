@@ -32,7 +32,8 @@ try {
     // get the mqtt message from the body field of the native request object
     var message = request.body; 
     
-    // the topic property of the received message contains the id of the device that published the message. Extract it with the below instruction
+    // the topic property of the received message contains the id of the device that published the message. 
+    // we extract using the below instruction
     var msgParts = message.topic.split("/");
 
 	// add the device id to the message
@@ -62,7 +63,7 @@ try {
     // publish the data to the dashboard (target all widgets with message tag "latest")
     publish("responseChannel", {id:"latest", result:event});
     
-    // read last 10 recorded speed values + corresponding date 
+    // read last historical 10 speed values + corresponding date at which they were recorded
     var resp = document.query({fields:"speed, creationDate", resultsPerPage:10}); 
     var messageList = resp.result.documents; 
     
