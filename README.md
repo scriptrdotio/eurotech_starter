@@ -1,5 +1,9 @@
 # eurotech_starter
 
+- [Overview](./REAMDE.md#overview)
+- [Installing and configuring the application](./README/nstalling-and-configuring-the-application)
+- [Running the application](./README/running-the-application)
+
 ## Overview
 
 This is a very simple application consisting of a simple dashboard that monitors metrics sent by simulated Eurotech devices. The latter publish data to a eurotech Everyware mqtt topic. Two types of events are published:
