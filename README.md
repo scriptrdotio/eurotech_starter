@@ -147,7 +147,7 @@ Frist, sign-in to the [simulator](https://cs.eurotech.com/gps-pcn-simulator/) **
 
 ### Enter simulation data
 
-- Enter some data for the simulator. Best option is to copy/paste the [data below](./README.md#data) (obtained from  [Eurotech's documentation](https://github.com/eurotech/pcn-trans-demo/blob/master/docs/web-pcn-sim.md))
+- Enter some data for the simulator. Best option is to copy/paste the [data below](./README.md#simulation-data) (obtained from  [Eurotech's documentation](https://github.com/eurotech/pcn-trans-demo/blob/master/docs/web-pcn-sim.md))
 - If you wish, configure the frequency at which messages will be published to Everywhere, as well as the max number of passenger, etc.
 - Once ready, click on **Start sending messages**
 
