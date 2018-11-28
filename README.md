@@ -119,7 +119,7 @@ A bridge connects an endpoint to one of your scriptr channels. Thus to create a 
 - Click on **Settings** then select the **Channels** tab
 - Click on the globe icon near the **eurotech** channel
 - From the drop down list, select the **eurotech** endpoint
-- Paste your device authentication token (obtained in [create a device](./REAMDE.md#create-a-device))
+- Paste your device authentication token (obtained in [create a device](./README.md#create-a-device))
 - Click on **Add Bridge** to deploy a new bridge
 
 ### Subscribe the processdata script to the eurotech channel
