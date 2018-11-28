@@ -1,8 +1,11 @@
+//  --------------------------------------------------------------------------
 // this script receives the mqtt messages that are published by the devices to the Everyware mqtt topics
-// it stores the messages in scriptr's storage then broadcasts the new values to the dashboard
-// it also queries for the latest 10 values of speed from the scriptr store and publishes them to the dashboard as well
+// it transforms the messages into simple key/value pair data structures to store them in scriptr's storage
+// key/value pairs are then broadcasts to the dashboard
+// the script also queries for the latest historical 10 values of speed from the scriptr store and publishes 
+// them to the dashboard as well
 // 
-// 2 types of incoming messages:
+// 2 types of messages are received:
 // { 
 //	"position": {"latitude": 28.012437,"longitude": -82.746277},
 //	"metric": [
@@ -19,6 +22,7 @@
 //  "topic": "Scriptr-io/scriptr-bus-002/LocationPublisher/location",
 //  "deviceId": "scriptr-bus-002"
 // }
+// --------------------------------------------------------------------------
 
 // the native document module provides data persistence operations (CRUD + querying)
 var document = require("document");
