@@ -33,7 +33,7 @@ try {
     var message = request.body; 
     
     // the topic property of the received message contains the id of the device that published the message. 
-    // we extract using the below instruction
+    // we extract it using the below instruction
     var msgParts = message.topic.split("/");
 
 	// add the device id to the message
