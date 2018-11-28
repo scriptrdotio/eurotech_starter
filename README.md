@@ -1,7 +1,7 @@
 # eurotech_starter
 
 - [Overview](./REAMDE.md#overview)
-- [Installing and configuring the application](./README/nstalling-and-configuring-the-application)
+- [Installing and configuring the application](./README/installing-and-configuring-the-application)
 - [Running the application](./README/running-the-application)
 
 ## Overview
