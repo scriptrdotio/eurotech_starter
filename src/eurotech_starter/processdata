@@ -1,0 +1,70 @@
+// this script receives the mqtt messages that are published by the devices to the Everyware mqtt topics
+// it the messages in scriptr's storage then broadcasts the new values to the dashboard
+// it also queries for the latest 10 values of speed from the scriptr store and publishes them to the dashboard as well
+// 
+// 2 types of incoming messages:
+// { 
+//	"position": {"latitude": 28.012437,"longitude": -82.746277},
+//	"metric": [
+// 		{"name": "AbsolutePop","type": "INT32","int_value": 50},
+//		{"name": "AbsoluteIn","type": "INT32","int_value": 3},
+//		{"name": "AbsoluteOut","type": "INT32","int_value": 1}
+//  ],
+// "topic": "Scriptr-io/scriptr-bus-002/PCNPublisher/Bus",
+// "deviceId": "scriptr-bus-002"
+// }
+// - OR -
+// {"position": {"latitude": 28.012437,"longitude": -82.746277,"speed": 38},
+//  "metric": [],
+//  "topic": "Scriptr-io/scriptr-bus-002/LocationPublisher/location",
+//  "deviceId": "scriptr-bus-002"
+// }
+
+// the native document module provides data persistence operations (CRUD + querying)
+var document = require("document");
+
+try {
+	
+    // get the mqtt message from the body field of the native request object
+    var message = request.body; 
+    
+    // the topic property of the received message contains the id of the device that published the message. Extract it with the below instruction
+    var msgParts = message.topic.split("/");
+
+	// add the device id to the message
+    message.deviceId = msgParts[1]; 
+   
+    // flatten the data into a simple key/value pair structure
+    var event = {
+        
+        deviceId: message.deviceId,
+        topic: message.topic,        
+    };
+    
+	if (message.position) {    
+        event.speed = message.position.speed;
+    }
+    
+    if (message.metric && message.metric.length > 0) {
+        
+        event.absolutepop = message.metric[0].int_value;
+        event.absolutein = message.metric[1].int_value;
+        event.absoluteout = message.metric[2].int_value;
+    }
+
+    // save the resulting data structure in scriptr's data store
+    document.save(event);
+    
+    // publish the data to the dashboard (target all widgets with message tag "latest")
+    publish("responseChannel", {id:"latest", result:event});
+    
+    // read last 10 recorded speed values + corresponding date 
+    var resp = document.query({fields:"speed, creationDate", resultsPerPage:10}); 
+    var messageList = resp.result.documents; 
+    
+    // publish the historical messages to the dashboard (target all widgets with message tag "historical")
+    publish("responseChannel", {id:"historical", result:messageList});
+    
+}catch(exception) {
+    log.error("Could not handle received message.\n"  +  JSON.stringify(exception));
+}
