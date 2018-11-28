@@ -2,7 +2,7 @@
 
 - [Overview](./REAMDE.md#overview)
 - [Installing and configuring the application](./README.md#installing-and-configuring-the-application)
-- [Running the application](./README,md#running-the-application)
+- [Running the application](./README.md#running-the-application)
 
 ## Overview
 
