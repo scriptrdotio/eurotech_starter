@@ -1,5 +1,5 @@
 // this script receives the mqtt messages that are published by the devices to the Everyware mqtt topics
-// it the messages in scriptr's storage then broadcasts the new values to the dashboard
+// it stores the messages in scriptr's storage then broadcasts the new values to the dashboard
 // it also queries for the latest 10 values of speed from the scriptr store and publishes them to the dashboard as well
 // 
 // 2 types of incoming messages:
