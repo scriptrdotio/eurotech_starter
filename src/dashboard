@@ -148,7 +148,7 @@
                           <div  style="height: calc(100% - 30px)" > <scriptr-odometer
 										transport='wss'
 										boxLabel='Passengers out'
-										msg-tag='Passengers out'
+										msg-tag='latest'
 										data='null'
 										animation='count'
 										duration='1'
