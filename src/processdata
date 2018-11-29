@@ -42,7 +42,7 @@ try {
     // flatten the data into a simple key/value pair structure
     var event = {
         
-        deviceId: message.deviceId,
+        eurotechDeviceId: message.deviceId,
         topic: message.topic,        
     };
     
