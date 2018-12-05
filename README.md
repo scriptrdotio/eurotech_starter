@@ -13,7 +13,7 @@ This is a very simple application consisting of a simple dashboard that monitors
 
 On the scriptr side, a script is subscribed to the Everyware mqtt topic. As soon as events arrive, they are are persisted in the scriptr's data store and further published to the dashboard that is updated in real time.
 
-## Pre-requisites
+## Prerequisites
 
 You need an Everyware account:
 
