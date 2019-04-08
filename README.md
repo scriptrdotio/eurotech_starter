@@ -11,7 +11,7 @@ This is a very simple application consisting of a simple dashboard that monitors
 - location and speed data, published while the bus is moving
 - bus load data (passengers getting off, getting on, current number of passengers), published while the bus is stopped.
 
-On the scriptr side, a script is subscribed to the Everyware mqtt topic. As soon as events arrive, they are are persisted in the scriptr's data store and further published to the dashboard that is updated in real time.
+On the scriptr.io side, a script is subscribed to the Everyware mqtt topic. As soon as events arrive, they are are persisted in the scriptr.io's data store and further published to the dashboard that is updated in real time.
 
 ## Prerequisites
 
@@ -22,14 +22,14 @@ You need an Everyware account:
 
 # Installing and configuring the application
 
-## Configure Github in your scriptr account
+## Configure Github in your scriptr.io account
 
 To proceed with the installation steps, you need to have a Github repository and a Github Personal Access Token. If you don' t have any of them, check the below links:
 
 - [Greate a new Github repository](https://help.github.com/articles/create-a-repo/)
 - [Generate a personal access token from Github](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)
 
-To configure the Github settings in scriptr, open your [scriptr workspace](https://www.scriptr.io/workspace), click on your username in the top right corner of the screen, then select **Settings** then click on the **Github** tab. 
+To configure the Github settings in scriptr.io, open your [scriptr.io workspace](https://www.scriptr.io/workspace), click on your username in the top right corner of the screen, then select **Settings** then click on the **Github** tab. 
 
 Fill the fields as follows:
 - Repository Owner: scriptrdotio
@@ -42,7 +42,7 @@ Click "Save" to validate you changes.
 
 ## Import the source code from Github
 
-From your [scriptr workspace](https://www.scriptr.io/workspace), click on the arrow next to +New Script in the bottom left corner of the screen:
+From your [scriptr.io workspace](https://www.scriptr.io/workspace), click on the arrow next to +New Script in the bottom left corner of the screen:
 - Click on **Install Modules**
 - In the Modules dialog:
   - Expand **+Add Custom Module from GitHub** 
@@ -54,21 +54,21 @@ From your [scriptr workspace](https://www.scriptr.io/workspace), click on the ar
 
 ## Configure the application
 
-### Create a sub-domain for your scriptr account
+### Create a sub-domain for your scriptr.io account
 
-If you do not already have a sub-domain: from your [scriptr workspace](https://www.scriptr.io/workspace), click on your username then select **Account**
+If you do not already have a sub-domain: from your [scriptr.io workspace](https://www.scriptr.io/workspace), click on your username then select **Account**
 - Select the **Sub-domain** tab
-- Enter a name for your sub-domain (it has to be unique, scriptr will reject names that already exist)
+- Enter a name for your sub-domain (it has to be unique, scriptr.io will reject names that already exist)
 - click on close
 
 ### Create channels
 
-Channels are used by scriptr as abstractions of publish/subscribe mechanisms. We will create two channels:
+Channels are used by scriptr.io as abstractions of publish/subscribe mechanisms. We will create two channels:
 
 - The **eurotech** channel will be used to convey any message received on the Everyware topic we are subscribed to, to our application
 - The **responseChannel** channel will be used to publish data to our dashboard in real-time
 
-From your [scriptr workspace](https://www.scriptr.io/workspace), click on your username in the top right corner of the screen:
+From your [scriptr.io workspace](https://www.scriptr.io/workspace), click on your username in the top right corner of the screen:
 - Click on Settings then select the **Channels** tab
 - In the dialog, expand +Add Channel
 - Enter a name for your channel (eurotech)
@@ -78,7 +78,7 @@ Proceed similarly to create the second channel (responseChannel) but this time, 
 
 ### Create a device
 
-You need to create a device in scriptr that is the representation of the physical device. Therefore, from the [scriptr workspace](https://www.scriptr.io/workspace):
+You need to create a device in scriptr.io that is the representation of the physical device. Therefore, from the [scriptr.io workspace](https://www.scriptr.io/workspace):
 
 - Click on your username in the top right corner of the screen
 - Click on **Device directory**
@@ -94,11 +94,11 @@ The devices used in this application publish data to two distinct topics hosted 
 - {account}/{client_id}/PCNPublisher/LocationPublisher/location. Published data are position_speed, position_longitude, position_latitude
 - {account}/{client_id}/PCNPublisher/Bus. Published data are position_longitude, position_latitude, AbsolutePop, AbsoluteOut, AbsoluteIn 
 
-To automatically convey these messages to your scriptr account, you need to create an endpoint + bridge on scriptr that subscribe to the above. 
+To automatically convey these messages to your scriptr.io account, you need to create an endpoint + bridge on scriptr.io that subscribe to the above. 
 
 #### Create an endpoint 
 
-From the [scriptr workspace](https://www.scriptr.io/workspace):
+From the [scriptr.io workspace](https://www.scriptr.io/workspace):
 
 - Click on your username in the top right corner of the screen:
 - Click on Settings then select the **External Endpoints** tab
@@ -113,7 +113,7 @@ From the [scriptr workspace](https://www.scriptr.io/workspace):
 
 #### Create a bridge
 
-A bridge connects an endpoint to one of your scriptr channels. Thus to create a bridge, you need to choose a channel:
+A bridge connects an endpoint to one of your scriptr.io channels. Thus to create a bridge, you need to choose a channel:
 
 - Click on your username in the top right corner of the screen
 - Click on **Settings** then select the **Channels** tab
@@ -124,7 +124,7 @@ A bridge connects an endpoint to one of your scriptr channels. Thus to create a 
 
 ### Subscribe the processdata script to the eurotech channel
 
-The above configuration subscribes your scriptr account to your mqtt topic on Everyware. All messages that are published to the latter will automatically be received by your **eurotech** channel. In order to start working on the payload contained in these messages, you just need to subscribe a script to the **eurotech** channel:
+The above configuration subscribes your scriptr.io account to your mqtt topic on Everyware. All messages that are published to the latter will automatically be received by your **eurotech** channel. In order to start working on the payload contained in these messages, you just need to subscribe a script to the **eurotech** channel:
 
 - Open the **/eurotech_simpleapp/api/inject** script by expanding the code tree on the left of your [workspace](https://www.scriptr.io/workspace)
 - In the tool bar click on **Subscribe**
